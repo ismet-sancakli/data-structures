@@ -1,0 +1,52 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<process.h>
+
+void selectionSort(int D[], int n);
+                                                                 
+int main()
+{
+	int A[50];
+	int n, i;
+
+	printf("dizinin botunu giriniz :\n");
+	scanf("%d", &n);
+
+	printf("dizinin elemanlarini giriniz \n");
+	for (i = 0; i < n; i++)
+	{
+		scanf("%d", &A[i]);
+	}
+
+	selectionSort(A, n);
+
+	for (i = 0; i < n; i++)
+	{
+		printf("dizinin %d. elemani = %d\n", i + 1, A[i]);
+	}
+
+
+	system("pause");
+	return 0;
+}
+
+void selectionSort(int D[], int n)
+{
+	int i, j, temp, min;
+
+	for (i = 0; i < n-1; i++)
+	{
+		min = i;
+		for ( j = i; j < n; j++)
+		{
+			if (D[j] < D[min])
+			{
+				min = j;
+			}
+		}
+		temp = D[i];
+		D[i] = D[min];
+		D[min] = temp;
+	}
+}
