@@ -1,0 +1,45 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<process.h>
+
+void inserSort(int D[], int n);
+                                                       
+int main()
+{
+	int A[25];
+	int n;
+
+	printf("dizinin boyutunu girniz :\n ");
+	scanf("%d", &n);
+
+	printf("dizinin elemanlarini giriniz\n ");
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d", &A[i]);
+	}
+
+	inserSort(A, n);
+
+	for (int i = 0; i < n; i++)
+	{
+		printf("%d\n", A[i]);
+	}
+
+	system("pause");
+	return 0;
+}
+
+void inserSort(int D[], int n)
+{
+	int temp, i, j;
+	for ( i = 0; i < n; i++)
+	{
+		temp = D[i];
+		for ( j = i-1; j >= 0 && temp <= D[j]; j--)
+		{
+			D[j + 1] = D[j];
+			D[j] = temp;
+		}
+	}	
+}
