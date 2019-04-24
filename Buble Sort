@@ -1,0 +1,53 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<process.h>
+#include<math.h>                    
+
+
+
+
+void bubbleSort(int D[], int n);
+                                                             
+int main()
+{
+	int A[25];
+	int n;
+
+	printf("dizinin boyutunu girniz :\n ");
+	scanf("%d", &n);
+
+	printf("dizinin elemanlarını giriniz\n ");
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d", &A[i]);
+	}
+	bubbleSort(A, n);
+
+	for (int i = 0; i < n; i++)
+	{
+		printf("%d\n", A[i]);
+	}
+
+
+	system("pause");
+	return 0;
+}
+
+void bubbleSort(int D[], int n)
+{
+	int move, kar, temp;
+
+	for ( move = 0; move < n-1; move++)
+	{
+		for ( kar = 0; kar < n - move -1; kar++)
+		{
+			if (D[kar+1] < D[kar])
+			{
+				temp = D[kar];
+				D[kar] = D[kar + 1];
+				D[kar + 1] = temp;
+			}
+		}
+	}
+}
