@@ -1,0 +1,102 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<process.h>   
+   
+int left(int i);
+int right(int i);
+void heapify(int D[], int i);
+void buildHeap(int D[], int n);
+void HeapSort(int D[], int n);
+
+int main()
+{
+	int A[25];
+	int i, n;
+
+	printf("Dizinin boyutuu giriniz : \n");
+	scanf("%d", &n);
+
+	printf(" Dizinin elemanlarini giriniz : \n");
+	for (i = 0; i < n; i++)
+	{
+		scanf("%d", &A[i]);
+	}
+
+	HeapSort(A, n);
+
+	printf("Sirlanmis dizi : \n");
+
+	for (i = 0; i < n; i++)
+	{
+		printf("%d\n", A[i]);
+	}
+	system("pasue");
+	
+	return 0;
+}
+
+int heap_size;
+
+int left(int i)
+{
+	return 2 * i + 1;
+}
+
+int right(int i)
+{
+	return 2 * i + 2;	
+}
+
+void heapify(int D[] , int i)
+{
+	int left_child, right_child, temp, max;
+	left_child = left(i);
+	right_child = right(i);
+
+	if ((left_child <= heap_size) && (D[left_child] > D[i]))
+	{
+		max = left_child;
+	}
+	else
+	{
+		max = i;
+	}
+	if ((right_child <= heap_size)  && (D[right_child] > D[i]))
+	{
+		max = right_child;
+	}
+
+	if (max != i)
+	{
+		temp = D[i];
+		D[i] = D[max];
+		D[max] = temp;
+		heapify(D, max);
+	}
+}
+
+void buildHeap(int D[], int n)
+{
+	int i;	
+	heap_size = n - 1;
+
+	for ( i = (n-1)/2; i >= 0 ; i--)
+	{
+		heapify(D, i);
+	}
+}
+ 
+void HeapSort(int D[], int n)
+{
+	int i, temp;
+	buildHeap(D, n);
+
+	for ( i = n-1; i >= 1; i--)
+	{
+		temp = D[i];
+		D[i] = D[0];
+		D[0] = temp;
+		heapify(D, 0);
+	}
+}
