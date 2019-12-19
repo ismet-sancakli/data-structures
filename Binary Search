@@ -41,12 +41,14 @@ int binary_search(int D[], int low, int high, int element)
 	while (low <= high)
 	{
 		middle = (low + high) / 2;
-		if (element > D[middle])
-			low = middle + 1;
-		else if (element < D[middle])
-			high = middle - 1;
-		else
+		if (element == D[middle])
 			return middle;
+			
+		if ( D[middle] > element )
+		return binary_search(D , low , middle-1 , element);
+		
+		else 
+		return binary_serach (D , middle+1 , high , element );
 	}
 	return -1;
 }
